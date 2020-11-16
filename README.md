@@ -1,5 +1,5 @@
 # ComicsApiGrpc
-ComicsApi example in grpc
+ComicsApi example in grpc which returns comic strip image urls
 
 This is a service which can be consumed by any grpc testing clients e.g. [bloomrpc](https://appimage.github.io/BloomRPC/)
 
@@ -8,3 +8,4 @@ Input can be one of the following
 - garfield
 - xkcd
 - calvinAndHobbs
+- no or any random input returns random comic
