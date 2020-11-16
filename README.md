@@ -8,4 +8,4 @@ Input can be one of the following
 - garfield
 - xkcd
 - calvinAndHobbs
-- no or any random input returns random comic
+- no/any random input returns random comic url
