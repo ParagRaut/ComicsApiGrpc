@@ -1,0 +1,21 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "ComicApiGrpc";
+
+package comic;
+
+// The comic service definition.
+service ComicApi {
+  // Sends a comic request
+  rpc GetComic (ComicRequest) returns (ComicReply);
+}
+
+// The request message.
+message ComicRequest {
+  string comicname = 1;
+}
+
+// The response message containing the comic url.
+message ComicReply {
+  string comicurl = 1;
+}
