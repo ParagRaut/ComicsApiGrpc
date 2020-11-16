@@ -1,5 +1,5 @@
-# ComicsApiGrpc
-ComicsApi example in grpc which returns comic strip image urls
+# ComicsApi gRPC
+ComicsApi example in gRPC which returns comic strip image urls
 
 This is a service which can be consumed by any grpc testing clients e.g. [bloomrpc](https://appimage.github.io/BloomRPC/)
 
