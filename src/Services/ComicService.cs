@@ -19,38 +19,29 @@ namespace ComicApiGrpc.Services
 
         public override async Task<ComicReply> GetComic(ComicRequest request, ServerCallContext context)
         {
-            switch (request.Comicname)
+            return request.Comicname switch
             {
-                case "dilbert":
-                    return new ComicReply
-                    {
-                        Comicurl = await ComicUrlService.GetDilbertComic()
-                    };
-                case "garfield":
-                    return new ComicReply
-                    {
-                        Comicurl = await ComicUrlService.GetGarfieldComic()
-                    };
-                case "xkcd":
-                    return new ComicReply
-                    {
-                        Comicurl = await ComicUrlService.GetXkcdComic()
-                    };
-                case "calvinAndHobbs":
-                    return new ComicReply
-                    {
-                        Comicurl = await ComicUrlService.GetCalvinAndHobbesComic()
-                    };
-                default:
-                    return new ComicReply
-                    {
-                        Comicurl = await ComicUrlService.GetRandomComic()
-                    };
-            }
-
-            
+                "dilbert" => new ComicReply
+                {
+                    Comicurl = await ComicUrlService.GetDilbertComic()
+                },
+                "garfield" => new ComicReply
+                {
+                    Comicurl = await ComicUrlService.GetGarfieldComic()
+                },
+                "xkcd" => new ComicReply
+                {
+                    Comicurl = await ComicUrlService.GetXkcdComic()
+                },
+                "calvinAndHobbs" => new ComicReply
+                {
+                    Comicurl = await ComicUrlService.GetCalvinAndHobbesComic()
+                },
+                _ => new ComicReply
+                {
+                    Comicurl = await ComicUrlService.GetRandomComic()
+                },
+            };
         }
-
-
     }
 }
