@@ -22,8 +22,6 @@ namespace ComicApiGrpc.Services
         {
             try
             {
-                throw new Exception();
-
                 return request.Comicname switch
                 {
                     "dilbert" => new ComicReply
