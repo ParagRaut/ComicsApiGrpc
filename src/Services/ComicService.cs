@@ -17,35 +17,35 @@ namespace ComicApiGrpc.Services
             ComicUrlService = comicUrlService;
         }
 
-        public override Task<ComicReply> GetComic(ComicRequest request, ServerCallContext context)
+        public override async Task<ComicReply> GetComic(ComicRequest request, ServerCallContext context)
         {
             switch (request.Comicname)
             {
                 case "dilbert":
-                    return Task.FromResult(new ComicReply
+                    return new ComicReply
                     {
-                        Comicurl = ComicUrlService.GetDilbertComic().GetAwaiter().GetResult()
-                    });
+                        Comicurl = await ComicUrlService.GetDilbertComic()
+                    };
                 case "garfield":
-                    return Task.FromResult(new ComicReply
+                    return new ComicReply
                     {
-                        Comicurl = ComicUrlService.GetGarfieldComic().GetAwaiter().GetResult()
-                    });
+                        Comicurl = await ComicUrlService.GetGarfieldComic()
+                    };
                 case "xkcd":
-                    return Task.FromResult(new ComicReply
+                    return new ComicReply
                     {
-                        Comicurl = ComicUrlService.GetXkcdComic().GetAwaiter().GetResult()
-                    });
+                        Comicurl = await ComicUrlService.GetXkcdComic()
+                    };
                 case "calvinAndHobbs":
-                    return Task.FromResult(new ComicReply
+                    return new ComicReply
                     {
-                        Comicurl = ComicUrlService.GetCalvinAndHobbesComic().GetAwaiter().GetResult()
-                    });
+                        Comicurl = await ComicUrlService.GetCalvinAndHobbesComic()
+                    };
                 default:
-                    return Task.FromResult(new ComicReply
+                    return new ComicReply
                     {
-                        Comicurl = ComicUrlService.GetRandomComic().GetAwaiter().GetResult()
-                    });
+                        Comicurl = await ComicUrlService.GetRandomComic()
+                    };
             }
 
             
