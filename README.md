@@ -9,3 +9,13 @@ Input can be one of the following
 - xkcd
 - calvinAndHobbs
 - no/any random input returns random comic url
+
+
+### Build instructions
+
+After cloning the repo
+
+```zsh
+cd src
+dotnet run
+```
