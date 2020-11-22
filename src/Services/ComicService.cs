@@ -20,38 +20,29 @@ namespace ComicApiGrpc.Services
 
         public override async Task<ComicReply> GetComic(ComicRequest request, ServerCallContext context)
         {
-            try
+            return request.Comicname switch
             {
-                return request.Comicname switch
+                "dilbert" => new ComicReply
                 {
-                    "dilbert" => new ComicReply
-                    {
-                        Comicurl = await ComicUrlService.GetDilbertComic()
-                    },
-                    "garfield" => new ComicReply
-                    {
-                        Comicurl = await ComicUrlService.GetGarfieldComic()
-                    },
-                    "xkcd" => new ComicReply
-                    {
-                        Comicurl = await ComicUrlService.GetXkcdComic()
-                    },
-                    "calvinAndHobbs" => new ComicReply
-                    {
-                        Comicurl = await ComicUrlService.GetCalvinAndHobbesComic()
-                    },
-                    _ => new ComicReply
-                    {
-                        Comicurl = await ComicUrlService.GetRandomComic()
-                    },
-                };
-            }
-            catch (Exception exception)
-            {
-                this._logger.LogError("Something went wrong", exception);
-
-                throw new RpcException(Status.DefaultCancelled, exception.Message);
-            }
+                    Comicurl = await ComicUrlService.GetDilbertComic()
+                },
+                "garfield" => new ComicReply
+                {
+                    Comicurl = await ComicUrlService.GetGarfieldComic()
+                },
+                "xkcd" => new ComicReply
+                {
+                    Comicurl = await ComicUrlService.GetXkcdComic()
+                },
+                "calvinAndHobbs" => new ComicReply
+                {
+                    Comicurl = await ComicUrlService.GetCalvinAndHobbesComic()
+                },
+                _ => new ComicReply
+                {
+                    Comicurl = await ComicUrlService.GetRandomComic()
+                },
+            };
         }
     }
 }

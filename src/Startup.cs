@@ -21,18 +21,18 @@ namespace ComicApiGrpc
         {
             services.AddGrpc();
             services.AddHttpClient<IXKCD, XKCD>();
-            services.AddSingleton<IXKCD, XKCD>(p =>
+            services.AddTransient<IXKCD, XKCD>(p =>
             {
                 HttpClient httpClient = p.GetRequiredService<IHttpClientFactory>()
                     .CreateClient(nameof(IXKCD));
 
                 return new XKCD(httpClient, true);
             });
-            services.AddSingleton<IXkcdComic, XkcdComic>();
-            services.AddSingleton<IGarfieldComics, GarfieldComics>();
-            services.AddSingleton<IDilbertComics, DilbertComics>();
-            services.AddSingleton<ICalvinAndHobbesComics, CalvinAndHobbesComics>();
-            services.AddSingleton<IComicUrlService, ComicUrlService>();
+            services.AddTransient<IXkcdComic, XkcdComic>();
+            services.AddTransient<IGarfieldComics, GarfieldComics>();
+            services.AddTransient<IDilbertComics, DilbertComics>();
+            services.AddTransient<ICalvinAndHobbesComics, CalvinAndHobbesComics>();
+            services.AddTransient<IComicUrlService, ComicUrlService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
