@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Net.Http;
 using ComicApiGrpc.ComicsService;
 using ComicApiGrpc.ComicsService.ComicSources.CalvinAndHobbes;
 using ComicApiGrpc.ComicsService.ComicSources.DilbertComics;
@@ -50,7 +46,7 @@ namespace ComicApiGrpc
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
-            {              
+            {
                 endpoints.MapGrpcService<ComicService>();
 
                 endpoints.MapGet("/", async context =>
