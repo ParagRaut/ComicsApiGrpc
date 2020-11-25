@@ -8,7 +8,7 @@ namespace ComicApiGrpc.ComicsService.ComicSources.GarfieldComics.GarfieldService
 {
     public class GarfieldServiceApi
     {
-        public async Task<string> GetGarfieldComicsUrl()
+        public static async Task<string> GetGarfieldComicsUrl()
         {
             string dateRange = GetRandomDateRange();
 
@@ -23,7 +23,7 @@ namespace ComicApiGrpc.ComicsService.ComicSources.GarfieldComics.GarfieldService
             return imageLink;
         }
 
-        private string GetRandomDateRange()
+        private static string GetRandomDateRange()
         {
             var random = new Random();
             var startDate = new DateTime(1978, 6, 19);
@@ -31,7 +31,7 @@ namespace ComicApiGrpc.ComicsService.ComicSources.GarfieldComics.GarfieldService
             return startDate.AddDays(random.Next(dateRange)).ToString("yyyy/MM/dd");
         }
 
-        private string GetUri(string source)
+        private static string GetUri(string source)
         {
             var document = new HtmlDocument();
 

@@ -7,7 +7,7 @@ namespace ComicApiGrpc.ComicsService.ComicSources.DilbertComics.DilbertService
 {
     public class DilbertServiceApi
     {
-        public async Task<string> GetDilbertComicsUrl()
+        public static async Task<string> GetDilbertComicsUrl()
         {
             string dateRange = GetRandomDateRange();
 
@@ -22,7 +22,7 @@ namespace ComicApiGrpc.ComicsService.ComicSources.DilbertComics.DilbertService
             return imageLink;
         }
 
-        private string GetUri(string source)
+        private static string GetUri(string source)
         {
             var document = new HtmlDocument();
 
@@ -44,7 +44,7 @@ namespace ComicApiGrpc.ComicsService.ComicSources.DilbertComics.DilbertService
             return imageLink;
         }
 
-        private string GetRandomDateRange()
+        private static string GetRandomDateRange()
         {
             var random = new Random();
             var startDate = new DateTime(1989, 4, 16);

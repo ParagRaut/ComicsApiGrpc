@@ -7,7 +7,7 @@ namespace ComicApiGrpc.ComicsService.ComicSources.CalvinAndHobbes.CalvinAndHobbe
 {
     public class CalvinAndHobbesServiceApi
     {
-        public async Task<string> CalvinAndHobbesComicUrl()
+        public static async Task<string> CalvinAndHobbesComicUrl()
         {
             var baseUrl = new Uri($" https://www.gocomics.com/random/calvinandhobbes");
 
@@ -20,7 +20,7 @@ namespace ComicApiGrpc.ComicsService.ComicSources.CalvinAndHobbes.CalvinAndHobbe
             return imageLink;
         }
 
-        private string GetUri(string source)
+        private static string GetUri(string source)
         {
             var document = new HtmlDocument();
 

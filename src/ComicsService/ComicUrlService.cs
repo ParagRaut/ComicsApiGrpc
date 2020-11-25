@@ -64,7 +64,7 @@ namespace ComicApiGrpc.ComicsService
             return ComicImageUri;
         }
 
-        private ComicEnum ChooseRandomComicSource()
+        private static ComicEnum ChooseRandomComicSource()
         {
             var random = new Random();
             return (ComicEnum)random.Next(Enum.GetNames(typeof(ComicEnum)).Length);

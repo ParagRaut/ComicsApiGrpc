@@ -49,6 +49,7 @@ namespace ComicApiGrpc.ComicsService.ComicSources.XKCD
         private async Task<int> GetLatestComicId()
         {
             Comic response = await this.XkcdService.GetLatestComicAsync();
+
             Debug.Assert(response.Num != null, "response.Num != null");
 
             return (int)response.Num.Value;
@@ -67,6 +68,7 @@ namespace ComicApiGrpc.ComicsService.ComicSources.XKCD
 
             return comicImage.Img;
         }
+
         private async Task<FileResult> DownloadImageAndReturn(int comicId)
         {
             Comic comicImage = await this.XkcdService.GetComicByIdAsync(comicId).ConfigureAwait(false);
