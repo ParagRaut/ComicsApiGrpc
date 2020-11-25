@@ -19,54 +19,37 @@ namespace ComicApiGrpc.ComicsService
             [NotNull] ICalvinAndHobbesComics calvinAndHobbesComics,
             ILogger<ComicUrlService> logger)
         {
-            XkcdComicsService = xkcdComic;
-            GarfieldComicsService = garfieldComics;
-            DilbertComicsService = dilbertComics;
-            CalvinAndHobbesComicsService = calvinAndHobbesComics;
+            this._xkcdComic = xkcdComic;
+            this._garfieldComics = garfieldComics;
+            this._dilbertComics = dilbertComics;
+            this._calvinAndHobbesComics = calvinAndHobbesComics;
             _logger = logger;
         }
 
-        private IXkcdComic XkcdComicsService { get; }
-
-        private IGarfieldComics GarfieldComicsService { get; }
-
-        private IDilbertComics DilbertComicsService { get; }
-
-        private ICalvinAndHobbesComics CalvinAndHobbesComicsService { get; }
-
-        private Task<string> ComicImageUri { get; set; }
-
+        private readonly IXkcdComic _xkcdComic;
+        private readonly IGarfieldComics _garfieldComics;
+        private readonly IDilbertComics _dilbertComics;
+        private readonly ICalvinAndHobbesComics _calvinAndHobbesComics;
         private readonly ILogger _logger;
 
         public Task<string> GetRandomComic()
         {
             ComicEnum comicName = ChooseRandomComicSource();
 
-            switch (comicName)
+            return comicName switch
             {
-                case ComicEnum.Garfield:
-                    ComicImageUri = GetGarfieldComic();
-                    break;
-                case ComicEnum.Xkcd:
-                    ComicImageUri = GetXkcdComic();
-                    break;
-                case ComicEnum.Dilbert:
-                    ComicImageUri = GetDilbertComic();
-                    break;
-                case ComicEnum.CalvinAndHobbes:
-                    ComicImageUri = GetCalvinAndHobbesComic();
-                    break;
-                default:
-                    _logger.LogInformation("Argument exception is thrown");
-                    throw new ArgumentOutOfRangeException();
-            }
-
-            return ComicImageUri;
+                ComicEnum.Garfield => this.GetGarfieldComic(),
+                ComicEnum.Xkcd => this.GetXkcdComic(),
+                ComicEnum.Dilbert => this.GetDilbertComic(),
+                ComicEnum.CalvinAndHobbes => this.GetCalvinAndHobbesComic(),
+                _ => throw new ArgumentOutOfRangeException()
+            };
         }
 
         private static ComicEnum ChooseRandomComicSource()
         {
             var random = new Random();
+
             return (ComicEnum)random.Next(Enum.GetNames(typeof(ComicEnum)).Length);
         }
 
@@ -74,28 +57,28 @@ namespace ComicApiGrpc.ComicsService
         {
             _logger.LogInformation($"Returning Dilbert comic strip");
 
-            return await DilbertComicsService.GetDilbertComicUri();
+            return await _dilbertComics.GetDilbertComicUri();
         }
 
         public async Task<string> GetGarfieldComic()
         {
             _logger.LogInformation($"Returning Garfield comic strip");
 
-            return await GarfieldComicsService.GetGarfieldComicUri();
+            return await _garfieldComics.GetGarfieldComicUri();
         }
 
         public async Task<string> GetXkcdComic()
         {
             _logger.LogInformation($"Returning XKCD comic strip");
 
-            return await XkcdComicsService.GetXkcdComicUri();
+            return await _xkcdComic.GetXkcdComicUri();
         }
 
         public async Task<string> GetCalvinAndHobbesComic()
         {
             _logger.LogInformation($"Returning Calvin and Hobbes comic strip");
 
-            return await CalvinAndHobbesComicsService.CalvinAndHobbesComicUri();
+            return await _calvinAndHobbesComics.CalvinAndHobbesComicUri();
         }
     }
 }
