@@ -6,7 +6,7 @@ namespace ComicApiGrpc.ComicsService.ComicSources.Garfield
     {
         public Task<string> GetGarfieldComicUri()
         {
-            return Service.GetGarfieldComicsUrl();
+            return Service.GetComicUri();
         }
     }
 }
