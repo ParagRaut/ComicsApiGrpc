@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ComicApiGrpc.ComicsService.ComicSources.XKCD
+namespace ComicApiGrpc.ComicsService.ComicSources.Xkcd
 {
     public interface IXkcdComic
     {

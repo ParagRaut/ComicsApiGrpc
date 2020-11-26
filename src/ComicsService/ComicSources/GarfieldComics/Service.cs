@@ -4,9 +4,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 
-namespace ComicApiGrpc.ComicsService.ComicSources.GarfieldComics.GarfieldService
+namespace ComicApiGrpc.ComicsService.ComicSources.GarfieldComics
 {
-    public class GarfieldServiceApi
+    public class Service
     {
         public static async Task<string> GetGarfieldComicsUrl()
         {

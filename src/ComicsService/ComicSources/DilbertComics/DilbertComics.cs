@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using ComicApiGrpc.ComicsService.ComicSources.DilbertComics.DilbertService;
 
 namespace ComicApiGrpc.ComicsService.ComicSources.DilbertComics
 {
@@ -7,7 +6,7 @@ namespace ComicApiGrpc.ComicsService.ComicSources.DilbertComics
     {
         public async Task<string> GetDilbertComicUri()
         {
-            return await DilbertServiceApi.GetDilbertComicsUrl();
+            return await Service.GetComicsUrl();
         }
     }
 }

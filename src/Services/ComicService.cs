@@ -1,21 +1,16 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using ComicApiGrpc.ComicsService;
 using Grpc.Core;
-using Microsoft.Extensions.Logging;
 
 namespace ComicApiGrpc.Services
 {
     public class ComicService : ComicApi.ComicApiBase
     {
-        private readonly ILogger<ComicService> _logger;
+        private readonly IComicUrlService _comicUrlService;
 
-        private IComicUrlService ComicUrlService { get; }
-
-        public ComicService(ILogger<ComicService> logger, IComicUrlService comicUrlService)
+        public ComicService(IComicUrlService comicUrlService)
         {
-            this._logger = logger;
-            ComicUrlService = comicUrlService;
+            _comicUrlService = comicUrlService;
         }
 
         public override async Task<ComicReply> GetComic(ComicRequest request, ServerCallContext context)
@@ -24,23 +19,23 @@ namespace ComicApiGrpc.Services
             {
                 "dilbert" => new ComicReply
                 {
-                    Comicurl = await ComicUrlService.GetDilbertComic()
+                    Comicurl = await _comicUrlService.GetDilbertComic()
                 },
                 "garfield" => new ComicReply
                 {
-                    Comicurl = await ComicUrlService.GetGarfieldComic()
+                    Comicurl = await _comicUrlService.GetGarfieldComic()
                 },
                 "xkcd" => new ComicReply
                 {
-                    Comicurl = await ComicUrlService.GetXkcdComic()
+                    Comicurl = await _comicUrlService.GetXkcdComic()
                 },
                 "calvinAndHobbs" => new ComicReply
                 {
-                    Comicurl = await ComicUrlService.GetCalvinAndHobbesComic()
+                    Comicurl = await _comicUrlService.GetCalvinAndHobbesComic()
                 },
                 _ => new ComicReply
                 {
-                    Comicurl = await ComicUrlService.GetRandomComic()
+                    Comicurl = await _comicUrlService.GetRandomComic()
                 },
             };
         }

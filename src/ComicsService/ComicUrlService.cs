@@ -5,7 +5,7 @@ using ComicApiGrpc.ComicsService.ComicSources;
 using ComicApiGrpc.ComicsService.ComicSources.CalvinAndHobbes;
 using ComicApiGrpc.ComicsService.ComicSources.DilbertComics;
 using ComicApiGrpc.ComicsService.ComicSources.GarfieldComics;
-using ComicApiGrpc.ComicsService.ComicSources.XKCD;
+using ComicApiGrpc.ComicsService.ComicSources.Xkcd;
 using Microsoft.Extensions.Logging;
 
 namespace ComicApiGrpc.ComicsService
@@ -16,20 +16,20 @@ namespace ComicApiGrpc.ComicsService
             [NotNull] IXkcdComic xkcdComic,
             [NotNull] IGarfieldComics garfieldComics,
             [NotNull] IDilbertComics dilbertComics,
-            [NotNull] ICalvinAndHobbesComics calvinAndHobbesComics,
+            [NotNull] ICalvinAndHobbes calvinAndHobbesComics,
             ILogger<ComicUrlService> logger)
         {
-            this._xkcdComic = xkcdComic;
-            this._garfieldComics = garfieldComics;
-            this._dilbertComics = dilbertComics;
-            this._calvinAndHobbesComics = calvinAndHobbesComics;
+            _xkcdComic = xkcdComic;
+            _garfieldComics = garfieldComics;
+            _dilbertComics = dilbertComics;
+            _calvinAndHobbesComics = calvinAndHobbesComics;
             _logger = logger;
         }
 
         private readonly IXkcdComic _xkcdComic;
         private readonly IGarfieldComics _garfieldComics;
         private readonly IDilbertComics _dilbertComics;
-        private readonly ICalvinAndHobbesComics _calvinAndHobbesComics;
+        private readonly ICalvinAndHobbes _calvinAndHobbesComics;
         private readonly ILogger _logger;
 
         public Task<string> GetRandomComic()
@@ -38,10 +38,10 @@ namespace ComicApiGrpc.ComicsService
 
             return comicName switch
             {
-                ComicEnum.Garfield => this.GetGarfieldComic(),
-                ComicEnum.Xkcd => this.GetXkcdComic(),
-                ComicEnum.Dilbert => this.GetDilbertComic(),
-                ComicEnum.CalvinAndHobbes => this.GetCalvinAndHobbesComic(),
+                ComicEnum.Garfield => GetGarfieldComic(),
+                ComicEnum.Xkcd => GetXkcdComic(),
+                ComicEnum.Dilbert => GetDilbertComic(),
+                ComicEnum.CalvinAndHobbes => GetCalvinAndHobbesComic(),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }

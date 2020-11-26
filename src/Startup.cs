@@ -3,7 +3,7 @@ using ComicApiGrpc.ComicsService;
 using ComicApiGrpc.ComicsService.ComicSources.CalvinAndHobbes;
 using ComicApiGrpc.ComicsService.ComicSources.DilbertComics;
 using ComicApiGrpc.ComicsService.ComicSources.GarfieldComics;
-using ComicApiGrpc.ComicsService.ComicSources.XKCD;
+using ComicApiGrpc.ComicsService.ComicSources.Xkcd;
 using ComicApiGrpc.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,8 +15,6 @@ namespace ComicApiGrpc
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddGrpc();
@@ -31,11 +29,10 @@ namespace ComicApiGrpc
             services.AddTransient<IXkcdComic, XkcdComic>();
             services.AddTransient<IGarfieldComics, GarfieldComics>();
             services.AddTransient<IDilbertComics, DilbertComics>();
-            services.AddTransient<ICalvinAndHobbesComics, CalvinAndHobbesComics>();
+            services.AddTransient<ICalvinAndHobbes, CalvinAndHobbes>();
             services.AddTransient<IComicUrlService, ComicUrlService>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -51,7 +48,7 @@ namespace ComicApiGrpc
 
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
+                    await context.Response.WriteAsync("Communication with gRPC endpoints must be made through a gRPC client. Try using bloom rpc to test it https://appimage.github.io/BloomRPC/");
                 });
             });
         }

@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using ComicApiGrpc.ComicsService.ComicSources.GarfieldComics.GarfieldService;
 
 namespace ComicApiGrpc.ComicsService.ComicSources.GarfieldComics
 {
@@ -7,7 +6,7 @@ namespace ComicApiGrpc.ComicsService.ComicSources.GarfieldComics
     {
         public Task<string> GetGarfieldComicUri()
         {
-            return GarfieldServiceApi.GetGarfieldComicsUrl();
+            return Service.GetGarfieldComicsUrl();
         }
     }
 }
