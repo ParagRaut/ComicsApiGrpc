@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace ComicApiGrpc.ComicsService.ComicSources.DilbertComics
+namespace ComicApiGrpc.ComicsService.ComicSources.Dilbert
 {
-    public class DilbertComics : IDilbertComics
+    public class Dilbert : IDilbert
     {
         public async Task<string> GetDilbertComicUri()
         {

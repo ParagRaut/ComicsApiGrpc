@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace ComicApiGrpc.ComicsService.ComicSources.GarfieldComics
+namespace ComicApiGrpc.ComicsService.ComicSources.Garfield
 {
-    public class GarfieldComics : IGarfieldComics
+    public class Garfield : IGarfield
     {
         public Task<string> GetGarfieldComicUri()
         {

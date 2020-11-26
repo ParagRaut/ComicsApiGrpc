@@ -1,8 +1,8 @@
 ﻿using System.Net.Http;
 using ComicApiGrpc.ComicsService;
 using ComicApiGrpc.ComicsService.ComicSources.CalvinAndHobbes;
-using ComicApiGrpc.ComicsService.ComicSources.DilbertComics;
-using ComicApiGrpc.ComicsService.ComicSources.GarfieldComics;
+using ComicApiGrpc.ComicsService.ComicSources.Dilbert;
+using ComicApiGrpc.ComicsService.ComicSources.Garfield;
 using ComicApiGrpc.ComicsService.ComicSources.Xkcd;
 using ComicApiGrpc.Services;
 using Microsoft.AspNetCore.Builder;
@@ -27,8 +27,8 @@ namespace ComicApiGrpc
                 return new XKCD(httpClient, true);
             });
             services.AddTransient<IXkcdComic, XkcdComic>();
-            services.AddTransient<IGarfieldComics, GarfieldComics>();
-            services.AddTransient<IDilbertComics, DilbertComics>();
+            services.AddTransient<IGarfield, Garfield>();
+            services.AddTransient<IDilbert, Dilbert>();
             services.AddTransient<ICalvinAndHobbes, CalvinAndHobbes>();
             services.AddTransient<IComicUrlService, ComicUrlService>();
         }

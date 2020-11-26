@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 
-namespace ComicApiGrpc.ComicsService.ComicSources.DilbertComics
+namespace ComicApiGrpc.ComicsService.ComicSources.Dilbert
 {
     public class Service
     {

@@ -3,8 +3,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using ComicApiGrpc.ComicsService.ComicSources;
 using ComicApiGrpc.ComicsService.ComicSources.CalvinAndHobbes;
-using ComicApiGrpc.ComicsService.ComicSources.DilbertComics;
-using ComicApiGrpc.ComicsService.ComicSources.GarfieldComics;
+using ComicApiGrpc.ComicsService.ComicSources.Dilbert;
+using ComicApiGrpc.ComicsService.ComicSources.Garfield;
 using ComicApiGrpc.ComicsService.ComicSources.Xkcd;
 using Microsoft.Extensions.Logging;
 
@@ -14,8 +14,8 @@ namespace ComicApiGrpc.ComicsService
     {
         public ComicUrlService(
             [NotNull] IXkcdComic xkcdComic,
-            [NotNull] IGarfieldComics garfieldComics,
-            [NotNull] IDilbertComics dilbertComics,
+            [NotNull] IGarfield garfieldComics,
+            [NotNull] IDilbert dilbertComics,
             [NotNull] ICalvinAndHobbes calvinAndHobbesComics,
             ILogger<ComicUrlService> logger)
         {
@@ -27,8 +27,8 @@ namespace ComicApiGrpc.ComicsService
         }
 
         private readonly IXkcdComic _xkcdComic;
-        private readonly IGarfieldComics _garfieldComics;
-        private readonly IDilbertComics _dilbertComics;
+        private readonly IGarfield _garfieldComics;
+        private readonly IDilbert _dilbertComics;
         private readonly ICalvinAndHobbes _calvinAndHobbesComics;
         private readonly ILogger _logger;
 
