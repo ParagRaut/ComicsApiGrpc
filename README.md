@@ -13,6 +13,7 @@ Input can be one of the following
 - calvinAndHobbs
 - no/any random input returns random comic url
 
+Check it live here: [ComicsApi-gRPC](https://random-comics-api-grpc.herokuapp.com/)
 
 ### Build instructions
 
