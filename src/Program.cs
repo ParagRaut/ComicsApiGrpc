@@ -2,7 +2,6 @@ using ComicApiGrpc.ComicsService.XKCD;
 using ComicApiGrpc.ComicsService.XKCD.Generated;
 using ComicApiGrpc.Services;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Additional configuration is required to successfully run gRPC on macOS.
