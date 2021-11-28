@@ -10,11 +10,17 @@ namespace ComicApiGrpc.Services;
 
 public class ComicService : ComicApi.ComicApiBase
 {
-    private readonly XKCDService service;
+    private readonly XKCDService _xKCDService;
+    private readonly CalvinAndHobbesService _calvinAndHobbesService;
+    private readonly DilbertService _dilbertService;
+    private readonly GarfieldService _garfieldService;
 
-    public ComicService(XKCDService service)
+    public ComicService(XKCDService xKCDService, CalvinAndHobbesService calvinAndHobbesService, DilbertService dilbertService, GarfieldService garfieldService)
     {
-        this.service = service;
+        _xKCDService = xKCDService;
+        _calvinAndHobbesService = calvinAndHobbesService;
+        _dilbertService = dilbertService;
+        _garfieldService = garfieldService;
     }
 
     private static ComicEnum ChooseRandomComicSource() => (ComicEnum)new Random().Next(Enum.GetNames(typeof(ComicEnum)).Length);
@@ -23,32 +29,32 @@ public class ComicService : ComicApi.ComicApiBase
     {
         var random = ChooseRandomComicSource();
 
-        return request.Comicname switch
+        return request.Comicname.ToLower() switch
         {
             "dilbert" => new ComicReply
             {
-                Comicurl = await DilbertService.GetComicUri()
+                Comicurl = await _dilbertService.GetComicUri()
             },
             "garfield" => new ComicReply
             {
-                Comicurl = await GarfieldService.GetComicUri()
+                Comicurl = await _garfieldService.GetComicUri()
             },
             "xkcd" => new ComicReply
             {
-                Comicurl = await service.GetComicUri()
+                Comicurl = await _xKCDService.GetComicUri()
             },
             "calvinAndHobbs" => new ComicReply
             {
-                Comicurl = await CalvinAndHobbesService.GetComicUri()
+                Comicurl = await _calvinAndHobbesService.GetComicUri()
             },
             _ => new ComicReply
             {
                 Comicurl = random switch
                 {
-                    ComicEnum.Garfield => await GarfieldService.GetComicUri(),
-                    ComicEnum.XKCD => await service.GetComicUri(),
-                    ComicEnum.Dilbert => await DilbertService.GetComicUri(),
-                    ComicEnum.CalvinAndHobbes => await CalvinAndHobbesService.GetComicUri(),
+                    ComicEnum.Garfield => await _garfieldService.GetComicUri(),
+                    ComicEnum.XKCD => await _xKCDService.GetComicUri(),
+                    ComicEnum.Dilbert => await _dilbertService.GetComicUri(),
+                    ComicEnum.CalvinAndHobbes => await _calvinAndHobbesService.GetComicUri(),
                     _ => throw new ArgumentOutOfRangeException(),
                 }
             },

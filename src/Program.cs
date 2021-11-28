@@ -1,3 +1,6 @@
+using ComicApiGrpc.ComicsService.CalvinAndHobbes;
+using ComicApiGrpc.ComicsService.Dilbert;
+using ComicApiGrpc.ComicsService.Garfield;
 using ComicApiGrpc.ComicsService.XKCD;
 using ComicApiGrpc.ComicsService.XKCD.Generated;
 using ComicApiGrpc.Services;
@@ -9,6 +12,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddGrpc();
+
+builder.Services.AddHttpClient<CalvinAndHobbesService>(client => client.BaseAddress = new Uri("https://www.gocomics.com/random/"));
+
+builder.Services.AddHttpClient<DilbertService>(client => client.BaseAddress = new Uri("https://dilbert.com/strip/"));
+
+builder.Services.AddHttpClient<GarfieldService>(client => client.BaseAddress = new Uri("https://www.gocomics.com/garfield/"));
 
 builder.Services.AddScoped<IXKCD, XKCD>(p => new XKCD(new HttpClient(), true));
 
