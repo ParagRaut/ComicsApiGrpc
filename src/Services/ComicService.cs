@@ -43,7 +43,7 @@ public class ComicService : ComicApi.ComicApiBase
             {
                 Comicurl = await _xKCDService.GetComicUri()
             },
-            "calvinAndHobbs" => new ComicReply
+            "calvinandhobbs" => new ComicReply
             {
                 Comicurl = await _calvinAndHobbesService.GetComicUri()
             },
