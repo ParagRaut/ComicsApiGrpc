@@ -4,15 +4,13 @@
 
 ComicsApi example in gRPC which returns comic strip image urls
 
-This is a service which can be consumed by any grpc testing clients e.g. [Kreya](https://kreya.app)
+This is a service which can be consumed by any grpc testing clients e.g. Postman
 
 Input can be one of the following
 - garfield
 - xkcd
 - calvinAndHobbs
 - no/any random input returns random comic url
-
-Check it live here: [ComicsApi-gRPC](https://random-comics-api-grpc.herokuapp.com/)
 
 ### Build instructions
 
