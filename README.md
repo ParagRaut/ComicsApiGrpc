@@ -1,6 +1,6 @@
 # ComicsApi gRPC
 
-[![.NET Core](https://github.com/ParagRaut/ComicsApiGrpc/actions/workflows/main.yml/badge.svg)](https://github.com/ParagRaut/ComicsApiGrpc/actions/workflows/main.yml)
+[![Build](https://github.com/ParagRaut/ComicsApiGrpc/actions/workflows/main.yml/badge.svg)](https://github.com/ParagRaut/ComicsApiGrpc/actions/workflows/main.yml)
 
 ComicsApi example in gRPC which returns comic strip image urls
 
